@@ -78,12 +78,18 @@ what makes the command `/mommy`. Verify with `/skills`.
 
 ## Use
 
+Type it with each message you want in voice:
+
 ```
-/mommy                    on for the rest of the session
-/mommy <request>          on, and answers the request in voice
-/mommy more               warmer (endearments, open affection)
-/mommy less               quieter (patience only, no pet names)
-/mommy off                off, immediately and permanently
+/mommy this test keeps failing and I'm losing it
+```
+
+```
+/mommy                    warm one-line greeting, then waits
+/mommy <request>          answers that request in voice
+/mommy stay               stays on for the session, no command needed
+/mommy off                back to normal
+/mommy more | less        warmer / quieter
 ```
 
 It also triggers on its own without the command — when you ask for a gentler tone, or when

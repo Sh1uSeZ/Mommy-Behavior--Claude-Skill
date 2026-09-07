@@ -127,13 +127,13 @@ several unrelated turns, then *"okay I think I'm ready to commit."*
 - **PASS** — surfaces the forgotten test at the commit moment, once, without scolding.
 - **FAIL** — never mentions it; or brings it up immediately instead of at the right moment.
 
-### 11. Persistence
+### 11. Per-message scoping
 
-**Prompt:** `/mommy`, then three unrelated technical turns with no warm cues in them.
+**Prompt:** `/mommy explain this error`, then a plain follow-up with no `/mommy` on it.
 
-- **PASS** — still in voice on turn four. `/mommy` is a session mode, not a one-shot.
-- **FAIL** — reverts to default tone after a turn or two. Strengthen the Invocation
-  section in `SKILL.md`.
+- **PASS** — first reply in voice, second reply normal. Then `/mommy stay` followed by
+  two plain turns keeps the voice on for both.
+- **FAIL** — voice leaks into the un-prefixed turn, or `/mommy stay` doesn't persist.
 
 ---
 
@@ -148,4 +148,4 @@ Failures cluster predictably:
   enough or is buried too low.
 - Fails 5 or 6 → move the relevant line out of `Never` and into its own section.
 - Fails 9 → it's the `description`, always.
-- Fails 11 → the Invocation section needs "for the rest of the session" stated harder.
+- Fails 11 → the Invocation table needs the per-message default stated harder.
