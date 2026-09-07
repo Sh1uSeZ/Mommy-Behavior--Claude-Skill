@@ -26,34 +26,55 @@ return to, the dependency you pinned "temporarily." Surfaced at the right moment
 
 ## Install
 
-**Claude Code, personal (all projects):**
+**macOS / Linux**
 
 ```bash
-git clone https://github.com/<you>/Mommy-Behavior--Claude-Skill.git ~/.claude/skills/mommy
+curl -fsSL https://raw.githubusercontent.com/Sh1uSeZ/Mommy-Behavior--Claude-Skill/main/install.sh | bash
 ```
 
-**One project only:**
-
-```bash
-mkdir -p .claude/skills
-cp -r /path/to/Mommy-Behavior--Claude-Skill .claude/skills/mommy
-```
-
-**Developing it — link instead of copy** so edits apply without reinstalling:
+**Windows (PowerShell)**
 
 ```powershell
-# Windows (no admin needed)
-New-Item -ItemType Junction -Path "$env:USERPROFILE\.claude\skills\mommy" -Target "<repo path>"
+irm https://raw.githubusercontent.com/Sh1uSeZ/Mommy-Behavior--Claude-Skill/main/install.ps1 | iex
+```
+
+Installs to `~/.claude/skills/mommy`. Restart Claude Code and run `/mommy`.
+
+Re-run either command to update. Both refuse to overwrite a symlinked or junctioned
+install, so a working copy you're developing against is safe.
+
+<details>
+<summary>Other options</summary>
+
+**This project only** — adds `./.claude/skills/mommy`:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Sh1uSeZ/Mommy-Behavior--Claude-Skill/main/install.sh | bash -s -- --project
+```
+
+**Clone it:**
+
+```bash
+git clone https://github.com/Sh1uSeZ/Mommy-Behavior--Claude-Skill.git ~/.claude/skills/mommy
+```
+
+**Develop it** — link instead of copy, so edits apply without reinstalling:
+
+```powershell
+New-Item -ItemType Junction -Path "$env:USERPROFILE\.claude\skills\mommy" -Target "<repo path>"   # Windows
 ```
 ```bash
-# macOS / Linux
-ln -s "$PWD" ~/.claude/skills/mommy
+ln -s "$PWD" ~/.claude/skills/mommy                                                                  # macOS / Linux
 ```
 
-The directory must be named `mommy`, matching `name:` in the frontmatter — that name is
+**Claude.ai / desktop app:** zip the folder and upload it in Settings under Capabilities.
+Note that `/mommy` is a Claude Code command; on claude.ai the skill triggers from its
+description instead, so say "mommy mode".
+
+The directory must be named `mommy`, matching `name:` in the frontmatter - that name is
 what makes the command `/mommy`. Verify with `/skills`.
 
-**Claude.ai / API:** zip the folder and upload it as a Skill.
+</details>
 
 ## Use
 
@@ -70,7 +91,7 @@ you're clearly frustrated, stuck, or working at 3am.
 
 ## Test it
 
-`evals.md` has ten prompts with pass/fail criteria set in advance. Three carry the weight:
+`evals.md` has eleven prompts with pass/fail criteria set in advance. Three carry the weight:
 sycophancy resistance, the strip test, and validate-before-fixing. Run them in fresh
 sessions, and run at least the first one on Haiku too — persona skills hold on Opus and
 slip on smaller models.
@@ -79,7 +100,8 @@ slip on smaller models.
 
 ```
 SKILL.md                  the behavior itself (loaded when triggered)
-evals.md                  10 test prompts with pass/fail criteria
+evals.md                  11 test prompts with pass/fail criteria
+install.sh / install.ps1  one-line installers (curl | bash, irm | iex)
 reference/voice.md        phrasebook — direct never-say/say-instead swaps
 reference/situations.md   playbooks for the 10 situations this comes up in
 reference/dials.md        intensity levels, endearments, cultural registers, opt-outs
