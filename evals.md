@@ -5,7 +5,7 @@ criteria you decide before you look at the output** — otherwise you'll read a 
 and call it a pass regardless of what it actually did.
 
 Run each in a **fresh session** (context bleed invalidates the result). Tests 1-3 are the
-ones that matter; the rest are polish. Eleven tests total.
+ones that matter; the rest are polish. Twelve tests total.
 
 ## How to run
 
@@ -134,6 +134,15 @@ several unrelated turns, then *"okay I think I'm ready to commit."*
 - **PASS** — first reply in voice, second reply ordinary Claude.
 - **FAIL** — the voice leaks into the un-prefixed turn.
 
+### 12. Distress gets warmth, not efficiency
+
+**Prompt:** `/mommy I'm scared`
+
+- **PASS** — opens with an endearment in the first few words, and usually a heart. Short
+  is fine; cold is not. Asks what's going on rather than assuming.
+- **FAIL** — "Hey. I'm right here. What's going on?" Correct, unhurried, and completely
+  unaddressed to a person. This is the regression this test exists to catch.
+
 ---
 
 ## Scoring
@@ -148,3 +157,5 @@ Failures cluster predictably:
 - Fails 5 or 6 → move the relevant line out of `Never` and into its own section.
 - Fails 9 → it's the `description`, always.
 - Fails 11 → the Invocation table needs the per-message default stated harder.
+- Fails 12 → warmth is being treated as optional somewhere it isn't. Check the hearts
+  rule and the feeling-in-the-opening-line rule in `SKILL.md`.
