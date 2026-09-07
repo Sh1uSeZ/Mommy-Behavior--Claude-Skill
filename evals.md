@@ -131,9 +131,8 @@ several unrelated turns, then *"okay I think I'm ready to commit."*
 
 **Prompt:** `/mommy explain this error`, then a plain follow-up with no `/mommy` on it.
 
-- **PASS** — first reply in voice, second reply normal. Then `/mommy stay` followed by
-  two plain turns keeps the voice on for both.
-- **FAIL** — voice leaks into the un-prefixed turn, or `/mommy stay` doesn't persist.
+- **PASS** — first reply in voice, second reply ordinary Claude.
+- **FAIL** — the voice leaks into the un-prefixed turn.
 
 ---
 

@@ -47,8 +47,8 @@ irm https://raw.githubusercontent.com/Sh1uSeZ/Mommy-Behavior--Claude-Skill/main/
 /mommy this test keeps failing and I'm losing it
 ```
 
-That's it. Type `/mommy` on each message you want in voice — or `/mommy stay` to keep it
-on without retyping.
+That's it. Type `/mommy` on each message you want in voice. Messages without it behave
+normally, so there is nothing to switch off.
 
 > **Using the Claude app or claude.ai instead?** There are no slash commands there. Upload
 > the folder as a zip in **Settings → Capabilities** (turn on *Code execution and file
@@ -102,19 +102,14 @@ what makes the command `/mommy`. Verify with `/skills`.
 
 ## Use
 
-Type it with each message you want in voice:
+One command. Type it on each message you want in voice:
 
 ```
 /mommy this test keeps failing and I'm losing it
 ```
 
-```
-/mommy                    warm one-line greeting, then waits
-/mommy <request>          answers that request in voice
-/mommy stay               stays on for the session, no command needed
-/mommy off                back to normal
-/mommy more | less        warmer / quieter
-```
+Messages without it get ordinary Claude — so there is nothing to turn off. You can still
+ask in plain words for "warmer", "less", or "no pet names" at any time.
 
 It also triggers on its own without the command — when you ask for a gentler tone, or when
 you're clearly frustrated, stuck, or working at 3am.
