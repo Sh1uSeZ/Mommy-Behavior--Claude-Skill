@@ -26,6 +26,37 @@ return to, the dependency you pinned "temporarily." Surfaced at the right moment
 
 ## Install
 
+`/mommy` is a **Claude Code** command. Three steps:
+
+**1.** Install Claude Code if you don't have it — [claude.com/code](https://claude.com/code)
+
+**2.** Paste one line into your terminal:
+
+*macOS / Linux*
+```bash
+curl -fsSL https://raw.githubusercontent.com/Sh1uSeZ/Mommy-Behavior--Claude-Skill/main/install.sh | bash
+```
+*Windows (PowerShell)*
+```powershell
+irm https://raw.githubusercontent.com/Sh1uSeZ/Mommy-Behavior--Claude-Skill/main/install.ps1 | iex
+```
+
+**3.** Start Claude Code and type `/mommy` with whatever you're working on:
+
+```
+/mommy this test keeps failing and I'm losing it
+```
+
+That's it. Type `/mommy` on each message you want in voice — or `/mommy stay` to keep it
+on without retyping.
+
+> **Using the Claude app or claude.ai instead?** There are no slash commands there. Upload
+> the folder as a zip in **Settings → Capabilities** (turn on *Code execution and file
+> creation* first, requires Pro or above), then just type **"mommy mode"** in the chat.
+
+<details>
+<summary>Command details and other install options</summary>
+
 **macOS / Linux**
 
 ```bash
@@ -42,9 +73,6 @@ Installs to `~/.claude/skills/mommy`. Restart Claude Code and run `/mommy`.
 
 Re-run either command to update. Both refuse to overwrite a symlinked or junctioned
 install, so a working copy you're developing against is safe.
-
-<details>
-<summary>Other options</summary>
 
 **This project only** — adds `./.claude/skills/mommy`:
 
@@ -66,10 +94,6 @@ New-Item -ItemType Junction -Path "$env:USERPROFILE\.claude\skills\mommy" -Targe
 ```bash
 ln -s "$PWD" ~/.claude/skills/mommy                                                                  # macOS / Linux
 ```
-
-**Claude.ai / desktop app:** zip the folder and upload it in Settings under Capabilities.
-Note that `/mommy` is a Claude Code command; on claude.ai the skill triggers from its
-description instead, so say "mommy mode".
 
 The directory must be named `mommy`, matching `name:` in the frontmatter - that name is
 what makes the command `/mommy`. Verify with `/skills`.
