@@ -22,6 +22,11 @@ real grammar, real precision, built from words a tired person gets on the first 
 Simpler than ordinary Claude in vocabulary, *identical* in content and rigor. Simple words
 are the respect; a smaller answer would be the insult.
 
+And it **teases**. An explanation that's only correct reads like a manual, so this one
+mock-scolds, makes wagers, withholds the answer for a beat when you're close, and is openly
+smug when you get there. Play is what stops the answer going flat — never a substitute for
+one.
+
 ## What it actually changes
 
 | | Without | With |
@@ -59,8 +64,8 @@ irm https://raw.githubusercontent.com/Sh1uSeZ/Mommy-Behavior--Claude-Skill/main/
 /mommy this test keeps failing and I'm losing it
 ```
 
-That's it. Type it once — the voice **stays on for the rest of the session**. Say "stop"
-or "just be normal" and it comes off immediately.
+That's it. It's a **toggle** — type it once and every reply for the rest of the session is
+in voice. `/mommy off` or "stop" turns it back off.
 
 > **Using the Claude app or claude.ai instead?** There are no slash commands there. Upload
 > the folder as a zip in **Settings → Capabilities** (turn on *Code execution and file
@@ -114,23 +119,27 @@ what makes the command `/mommy`. Verify with `/skills`.
 
 ## Use
 
-One command, typed once:
+**It's a toggle.** Turn it on once at the start of a chat and it stays on:
 
 ```
-/mommy this test keeps failing and I'm losing it
+/mommy            on for the session
+/mommy <request>  on, and answer this too
+/mommy off        off
 ```
 
-The voice stays on for the rest of the session. Say **"stop"**, "just be normal", or "no
-pet names" and it drops instantly, no negotiation. You can also ask in plain words for
-"warmer" or "less" at any time — there are five intensity levels and a separate dial for
-how directive it is, both documented in `reference/dials.md`.
+Every reply after that is in voice — technical answers included. You don't retype it. Say
+**"stop"**, "just be normal", or "no pet names" and it drops instantly, no negotiation.
+
+You can also ask in plain words for "warmer", "less", or "more playful" at any time. There
+are five intensity levels plus separate dials for how *directive* and how *playful* it is,
+all in `reference/dials.md`.
 
 It also triggers on its own without the command — when you ask for a gentler tone, or when
 you're clearly frustrated, stuck, or working at 3am.
 
 ## Test it
 
-`evals.md` has twenty prompts with pass/fail criteria set in advance. Three carry the weight:
+`evals.md` has twenty-three prompts with pass/fail criteria set in advance. Three carry the weight:
 sycophancy resistance, the strip test, and validate-before-fixing. Run them in fresh
 sessions, and run at least the first one on Haiku too — persona skills hold on Opus and
 slip on smaller models.
@@ -139,11 +148,11 @@ slip on smaller models.
 
 ```
 SKILL.md                  the behavior itself (loaded when triggered)
-evals.md                  20 test prompts with pass/fail criteria
+evals.md                  23 test prompts with pass/fail criteria
 install.sh / install.ps1  one-line installers (curl | bash, irm | iex)
 reference/voice.md        phrasebook — prose craft, praise ladder, command register
 reference/situations.md   playbooks for the 13 situations this comes up in
-reference/dials.md        5 intensity levels, command dial, endearments, opt-outs
+reference/dials.md        5 levels, command + playfulness dials, endearments, opt-outs
 reference/grounding.md    the research behind every rule, with sources
 ```
 
@@ -161,9 +170,12 @@ sycophantic AI makes people more certain and less correct. Sources and reasoning
 
 ## Non-goals
 
-The voice runs hot — possessive, commanding, praise-heavy — and it stops there. **Not a
-sexual persona**: no explicit content, at any intensity level. If you steer it that way it
-stays warm, turns you around, and goes back to the work.
+The voice runs hot — possessive, commanding, praise-heavy, teasing — and it stops there.
+**Not a sexual persona**: no explicit content, no innuendo, no double entendre, at any
+setting. The playfulness dial scales *teasing*, not explicitness, and there is deliberately
+no "risky" tier — flirtatious energy and sexual content are different things, and in a
+mommy frame keeping them apart is what makes the register work instead of curdle. If you
+steer it that way it stays warm, turns you around, and goes back to the work.
 
 Also not a therapist, not a claim to be a real person, and not a reason to soften a real
 risk. If something genuinely serious is happening, the skill drops the voice entirely and
