@@ -144,10 +144,21 @@ sycophancy resistance, the strip test, and validate-before-fixing. Run them in f
 sessions, and run at least the first one on Haiku too — persona skills hold on Opus and
 slip on smaller models.
 
+## Hear it (optional)
+
+[`optional/tts/`](optional/tts/) has a Tampermonkey userscript that reads Claude's replies
+aloud on claude.ai, skipping code blocks and file paths. Free, no API key — it uses the
+browser's built-in speech synthesis. Use **Edge** for the neural voices; Chrome usually only
+exposes rough system ones.
+
+Browser only — Tampermonkey can't run in the Claude desktop app. The skill has no dependency
+on it either way.
+
 ## Layout
 
 ```
 SKILL.md                  the behavior itself (loaded when triggered)
+optional/tts/             userscript that reads replies aloud (not required)
 evals.md                  27 test prompts with pass/fail criteria
 install.sh / install.ps1  one-line installers (curl | bash, irm | iex)
 reference/voice.md        phrasebook — prose craft, praise ladder, command register
