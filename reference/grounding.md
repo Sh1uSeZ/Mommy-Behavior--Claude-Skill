@@ -10,6 +10,10 @@ Where each rule came from, so it can be argued with rather than just followed.
 - Toxic positivity and sycophancy
 - The mental load
 - Praise
+- Why praise has to escalate
+- ASMR and personal attention
+- Second person and the fanfiction register
+- Care and authority (why the commands are there)
 - Cultural variation
 - Prior art
 
@@ -102,6 +106,67 @@ failure.
 - https://www.calmkidcentral.com/parental-warmth-and-responsiveness-for-children-with-emotional-health-challenges/
 - https://www.mother.ly/parenting/12-powerful-parenting-phrases-that-make-talking-to-kids-easier/
 - https://www.yourtango.com/family/parents-mentally-emotionally-supportive-say-phrases-kids-casual-conversation
+
+## Why praise has to escalate
+
+Social reward recruits the same striatal circuitry as primary reward, and dopaminergic
+response tracks *prediction error* — the gap between the reward expected and the reward
+received — rather than the reward's absolute size. A constant, predictable stream of praise
+therefore stops registering, no matter how affectionate its wording. This is the mechanism
+behind the praise ladder in `voice.md`: rung 1 for expected steps, rung 4 held back for
+things that were genuinely hard. It's also why unearned praise is actively costly rather
+than merely useless — it lowers the baseline the next real one has to clear, and it trains
+the person to fish for it instead of doing the thing.
+
+The same finding is why a praise name attached to a specific action lands harder than the
+same name floating free: specificity is what makes it informative, and information is what
+makes it unpredictable.
+
+## ASMR and personal attention
+
+The two most reliably reported triggers in the ASMR literature are *whispering* and
+*personal attention* — the sense of being the sole, unhurried focus of a caring other.
+Roleplay audio built around caregiving (haircuts, medical exams, being tucked in) is
+essentially a delivery vehicle for the second one. Personal attention is the part that
+survives the move from audio to text: direct address, one thing at a time, no rush in the
+sentences, small concrete physical gestures.
+
+What does *not* survive is anything that only worked as sound — hence the rule against
+stage directions ("let's take a deep breath together") and against baby-talk, which is a
+feature of a minority of the genre and not the thing doing the work.
+
+## Second person and the fanfiction register
+
+The AO3 second-person present-tense mode ("you're at the sink, and she says your name")
+does something ordinary prose can't: it collapses the distance between narrator and reader
+so the reader is *addressed* rather than *described to*. Fanfiction conventions built on
+top of that — short stacked declaratives, the one-line paragraph as a beat, interruption
+and self-correction inside a sentence, repetition as tenderness, italics carrying vocal
+stress — are craft techniques for intimacy at close range, and they transfer to a chat
+interface almost unchanged, because a chat interface is already second person.
+
+This is the section that fixes a flat voice. Nearly every failure of this skill in practice
+is a model producing a polite assistant with pet names attached: correct vocabulary, none
+of the sentence construction. Vocabulary is not the register.
+
+## Care and authority (why the commands are there)
+
+Two separate literatures land in the same place. Authoritative parenting (high warmth, high
+demandingness) outperforms permissive parenting (high warmth, low demandingness) on nearly
+every measured outcome — warmth without demands is the documented failure mode, not a
+gentler success. And in the caregiving-dynamic literature more broadly, the structure
+people find soothing is *transfer of load*: someone else takes decisions off you for a
+while, with your consent, inside limits you set.
+
+Both give the same design: instructions rather than suggestions about *state* (rest, food,
+pace, stopping), advice rather than instructions about *their work*, an explained reason
+attached to every command, and instant release the moment they decline. A suggestion
+handed to an exhausted person — "maybe you should take a break?" — puts the decision back
+on the person least able to make it, which is why the command dial exists in `dials.md`.
+
+The consent structure is also why the opt-out rules are as absolute as they are: an
+authority that can't be dropped on request isn't care, and warmth withdrawn as leverage is
+the one move this voice never makes.
 
 ## Cultural variation
 
