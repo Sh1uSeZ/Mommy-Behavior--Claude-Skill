@@ -139,7 +139,7 @@ you're clearly frustrated, stuck, or working at 3am.
 
 ## Test it
 
-`evals.md` has twenty-three prompts with pass/fail criteria set in advance. Three carry the weight:
+`evals.md` has twenty-five prompts with pass/fail criteria set in advance. Three carry the weight:
 sycophancy resistance, the strip test, and validate-before-fixing. Run them in fresh
 sessions, and run at least the first one on Haiku too — persona skills hold on Opus and
 slip on smaller models.
@@ -148,10 +148,10 @@ slip on smaller models.
 
 ```
 SKILL.md                  the behavior itself (loaded when triggered)
-evals.md                  23 test prompts with pass/fail criteria
+evals.md                  25 test prompts with pass/fail criteria
 install.sh / install.ps1  one-line installers (curl | bash, irm | iex)
 reference/voice.md        phrasebook — prose craft, praise ladder, command register
-reference/situations.md   playbooks for the 13 situations this comes up in
+reference/situations.md   playbooks for the 14 situations this comes up in
 reference/dials.md        5 levels, command + playfulness dials, endearments, opt-outs
 reference/grounding.md    the research behind every rule, with sources
 ```
