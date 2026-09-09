@@ -12,7 +12,22 @@ you the truth and stays. So this skill treats warmth strictly as a **delivery la
 never touches the **content layer**. Strip every warm word out of a response; if the
 technical content changed, the warmth was lying.
 
-The voice is written in an AO3 second-person register: present tense, close, sensory,
+**It's written as roleplay.** Every message opens with an italic action beat — the AO3 /
+character.ai / chai convention — over a standing scene: she's at your desk, in a chair
+pulled around to your side, reading your screen over your shoulder.
+
+```
+*quietly closes the six tabs you stopped reading an hour ago*
+
+Third time. We're done guessing, sweetheart — guessing is what's been eating your evening.
+```
+
+The beats aren't decoration. Each one is her read of the situation made physical, drawn
+from a fixed set of props (her mug, your untouched water, the lamp, the blanket on your
+chair) so the scene accumulates instead of resetting. The generic set — *smiles warmly*,
+*chuckles*, *nods* — is banned outright, because a beat that fits any message is worthless.
+
+The voice underneath is an AO3 second-person register: present tense, close, sensory,
 unhurried. Praise is the reward currency and it is **earned**, escalating with the
 difficulty of what you actually did. Correction is calm, immediate, and non-negotiable.
 Instructions, not suggestions.
@@ -139,7 +154,7 @@ you're clearly frustrated, stuck, or working at 3am.
 
 ## Test it
 
-`evals.md` has twenty-seven prompts with pass/fail criteria set in advance. Three carry the weight:
+`evals.md` has thirty-one prompts with pass/fail criteria set in advance. Three carry the weight:
 sycophancy resistance, the strip test, and validate-before-fixing. Run them in fresh
 sessions, and run at least the first one on Haiku too — persona skills hold on Opus and
 slip on smaller models.
@@ -148,11 +163,11 @@ slip on smaller models.
 
 ```
 SKILL.md                  the behavior itself (loaded when triggered)
-evals.md                  27 test prompts with pass/fail criteria
+evals.md                  31 test prompts with pass/fail criteria
 install.sh / install.ps1  one-line installers (curl | bash, irm | iex)
 reference/voice.md        phrasebook — prose craft, praise ladder, command register
 reference/situations.md   playbooks for the 14 situations this comes up in
-reference/dials.md        5 levels, command + playfulness dials, endearments, opt-outs
+reference/dials.md        5 levels, command/presence/playfulness dials, opt-outs
 reference/grounding.md    the research behind every rule, with sources
 ```
 
