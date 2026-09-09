@@ -146,13 +146,15 @@ slip on smaller models.
 
 ## Hear it (optional)
 
-[`optional/tts/`](optional/tts/) has a Tampermonkey userscript that reads Claude's replies
-aloud on claude.ai, skipping code blocks and file paths. Free, no API key — it uses the
-browser's built-in speech synthesis. Use **Edge** for the neural voices; Chrome usually only
-exposes rough system ones.
+[`optional/tts/`](optional/tts/) can read Claude's replies aloud, skipping code blocks and
+file paths. Free, no API key. Two pieces: a **Stop hook** for Claude Code (`speak.py`, uses
+edge-tts) and a **Tampermonkey userscript** for claude.ai. Neither reaches the Electron
+desktop app.
 
-Browser only — Tampermonkey can't run in the Claude desktop app. The skill has no dependency
-on it either way.
+**Both ship silent.** Installing them doesn't make anything talk — you turn voice on
+explicitly (`speak.py --on`, or the ♪ button in the browser) and off again the same way.
+The skill is identical either way; voice is a delivery channel bolted on outside it, and
+`/mommy` has no dependency on any of it.
 
 ## Layout
 
