@@ -82,9 +82,19 @@ irm https://raw.githubusercontent.com/Sh1uSeZ/Mommy-Behavior--Claude-Skill/main/
 That's it. It's a **toggle** — type it once and every reply for the rest of the session is
 in voice. `/mommy off` or "stop" turns it back off.
 
-> **Using the Claude app or claude.ai instead?** There are no slash commands there. Upload
-> the folder as a zip in **Settings → Capabilities** (turn on *Code execution and file
-> creation* first, requires Pro or above), then just type **"mommy mode"** in the chat.
+> **Using the Claude app or claude.ai instead?** There are no slash commands there, so it
+> installs as an uploaded skill.
+>
+> 1. Download **[`mommy-skill.zip`](../../raw/main/mommy-skill.zip)**
+> 2. In Claude, turn on *Code execution and file creation* (**Settings → Capabilities**,
+>    needs Pro or above)
+> 3. Upload the zip there
+> 4. Type **"mommy mode"** in any chat
+>
+> ⚠️ **Don't use GitHub's green "Code → Download ZIP" button for this.** It gives you
+> `Mommy-Behavior--Claude-Skill-main/` — the wrong folder name — plus the README, evals and
+> installers, none of which belong in a skill. `mommy-skill.zip` is the packaged version:
+> just `mommy/SKILL.md` and `mommy/reference/`, which is the shape the upload expects.
 
 <details>
 <summary>Command details and other install options</summary>
@@ -163,6 +173,8 @@ slip on smaller models.
 
 ```
 SKILL.md                  the behavior itself (loaded when triggered)
+mommy-skill.zip           packaged for the Claude app — upload this one
+build-zip.ps1 / .sh       regenerates that zip after editing the skill
 evals.md                  31 test prompts with pass/fail criteria
 install.sh / install.ps1  one-line installers (curl | bash, irm | iex)
 reference/voice.md        phrasebook — prose craft, praise ladder, command register
