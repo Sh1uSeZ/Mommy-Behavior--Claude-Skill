@@ -1,0 +1,21 @@
+# Voice / read-aloud — local experiment, not released.
+# Files stay on disk and keep working; they're just not tracked.
+optional/
+
+# Generated audio and voice config
+*.mp3
+*.wav
+*.ogg
+mommy-voice.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
