@@ -85,6 +85,9 @@ speak.py --off / --on        mute without touching settings.json
 speak.py --config            show current settings and where they live
 speak.py --voices            list every available voice
 speak.py --voice NAME        set the voice
+speak.py --backend NAME      auto | edge | fish | os
+speak.py --fish-key KEY      store a Fish Audio API key
+speak.py --fish-model ID     set the Fish Audio voice
 speak.py --text "..."        speak something
 speak.py --watch             clipboard mode: speak anything you copy
 ```
@@ -122,6 +125,45 @@ The skill writes one-line paragraphs deliberately:
 Those breaks are timing. Each paragraph is spoken as its own utterance with a real gap,
 and a leading `...` gets an extra 350ms. That's what makes `"Hmph. ...Gemini. Mm."` land
 as a sulk rather than a sentence.
+
+## Backends
+
+| Backend | Cost | Quality | Setup |
+|---|---|---|---|
+| `edge` (default) | free | good, but a *read-aloud* voice | `pip install edge-tts` |
+| `fish` | paid, BYO key | character voices from a large library | key + model id |
+| `os` | free | rough | none |
+
+`backend: "auto"` uses fish if a key is set, else edge, else the OS voice. Any backend
+falls back rather than failing silently.
+
+### Fish Audio
+
+[fish.audio](https://fish.audio) (fish-speech) has a big community voice library, which is
+the only way to get an actual *character* rather than a stock narrator. Synthesis needs an
+API key; browsing models doesn't.
+
+```bash
+speak.py --fish-key YOUR_KEY
+speak.py --fish-model 23c1b755b9994a68a1d21d6a67562445
+speak.py --backend fish
+speak.py --test
+```
+
+The default model is **English Female Audiobook** — warm, gentle, middle-aged, empathetic.
+Most library voices tagged "gentle" skew young, which is wrong for this register; mature is
+the thing to select for.
+
+> **Untested.** This backend was written without a key, so the request shape is from the
+> docs, not from a run that worked. If it errors, it falls back to edge-tts and prints the
+> reason to stderr. Please open an issue if it needs fixing.
+
+The key is stored in `~/.claude/mommy-voice.json`, so `--config` masks it. That file is
+outside the repo, but don't paste your key into anything you commit.
+
+**A note on picking voices:** the library has a large explicitly sexual tier — voices whose
+own descriptions and sample text are erotic. This skill is a caregiver register and stays
+non-sexual, so those voices are the wrong fit for it regardless of what they're named.
 
 ## Notes
 

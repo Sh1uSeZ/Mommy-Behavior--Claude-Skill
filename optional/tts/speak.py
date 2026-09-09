@@ -42,6 +42,15 @@ DEFAULTS = {
     "rate": "-14%",     # the register is unhurried; full speed rushes it
     "pitch": "-4Hz",    # slightly lower reads warmer and older
     "volume": "+0%",
+    # "auto" picks fish if a key is set, else edge-tts, else the OS voice.
+    # Force one with "edge", "fish" or "os".
+    "backend": "auto",
+    # Fish Audio (fish-speech). Needs a key from fish.audio; the free edge path
+    # needs nothing. Default model is "English Female Audiobook" - warm, gentle,
+    # middle-aged, empathetic.
+    "fish_api_key": "",
+    "fish_model_id": "23c1b755b9994a68a1d21d6a67562445",
+    "fish_speed": 0.88,   # same intent as edge's -14% rate
     "gap_ms": 550,      # silence between beats - this is what makes pauses land
     # Speech runs ~2 words/second at this rate, so an unbounded reply talks for
     # minutes. These caps keep it to a spoken acknowledgement, not an audiobook.
@@ -181,6 +190,53 @@ def have_edge_tts():
         return False
 
 
+def pick_backend(cfg):
+    want = (cfg.get("backend") or "auto").lower()
+    if want == "auto":
+        if cfg.get("fish_api_key"):
+            return "fish"
+        return "edge" if have_edge_tts() else "os"
+    if want == "fish" and not cfg.get("fish_api_key"):
+        print("backend=fish but fish_api_key is empty; falling back", file=sys.stderr)
+        return "edge" if have_edge_tts() else "os"
+    if want == "edge" and not have_edge_tts():
+        print("backend=edge but edge-tts isn't installed; falling back", file=sys.stderr)
+        return "os"
+    return want
+
+
+def synth_beats_fish(beats, cfg, outdir):
+    """Render each beat via the Fish Audio API. Needs fish_api_key."""
+    import urllib.request
+
+    paths = []
+    for i, (text, _) in enumerate(beats):
+        body = json.dumps({
+            "text": text,
+            "reference_id": cfg["fish_model_id"],
+            "format": "mp3",
+            "prosody": {"speed": cfg.get("fish_speed", 1.0)},
+        }).encode("utf-8")
+        req = urllib.request.Request(
+            "https://api.fish.audio/v1/tts",
+            data=body,
+            headers={
+                "Authorization": "Bearer " + cfg["fish_api_key"],
+                "Content-Type": "application/json",
+                "model": "speech-1.5",
+            },
+        )
+        path = os.path.join(outdir, f"b{i:03d}.mp3")
+        with urllib.request.urlopen(req, timeout=45) as r:
+            data = r.read()
+        if not data:
+            raise RuntimeError("fish returned empty audio")
+        with open(path, "wb") as fh:
+            fh.write(data)
+        paths.append(path)
+    return paths
+
+
 def synth_beats(beats, cfg, outdir):
     """Render each beat to its own mp3, concurrently."""
     import asyncio
@@ -274,15 +330,19 @@ def say(text, cfg):
     if not beats:
         return
 
-    if not have_edge_tts():
+    backend = pick_backend(cfg)
+    if backend == "os":
         fallback_speak(" ".join(t for t, _ in beats), cfg)
         return
 
     with tempfile.TemporaryDirectory(prefix="mommyvoice-") as tmp:
         try:
-            paths = synth_beats(beats, cfg, tmp)
+            if backend == "fish":
+                paths = synth_beats_fish(beats, cfg, tmp)
+            else:
+                paths = synth_beats(beats, cfg, tmp)
         except Exception as e:
-            print(f"edge-tts failed ({e}); falling back", file=sys.stderr)
+            print(f"{backend} synthesis failed ({e}); falling back", file=sys.stderr)
             fallback_speak(" ".join(t for t, _ in beats), cfg)
             return
         gaps = [cfg["gap_ms"] + (350 if lead else 0) for _, lead in beats]
@@ -392,6 +452,9 @@ def main():
     ap.add_argument("--on", action="store_true")
     ap.add_argument("--off", action="store_true")
     ap.add_argument("--voice")
+    ap.add_argument("--backend", choices=["auto", "edge", "fish", "os"])
+    ap.add_argument("--fish-key", help="Fish Audio API key (stored in the config file)")
+    ap.add_argument("--fish-model", help="Fish Audio voice/model id")
     ap.add_argument("--text", nargs="*")
     args = ap.parse_args()
 
@@ -407,16 +470,32 @@ def main():
             print("voice OFF")
         return 0
 
+    changed = []
     if args.voice:
         cfg["voice"] = args.voice
+        changed.append(f"voice={args.voice}")
+    if args.backend:
+        cfg["backend"] = args.backend
+        changed.append(f"backend={args.backend}")
+    if args.fish_key:
+        cfg["fish_api_key"] = args.fish_key
+        changed.append("fish_api_key=***stored***")
+    if args.fish_model:
+        cfg["fish_model_id"] = args.fish_model
+        changed.append(f"fish_model_id={args.fish_model}")
+    if changed:
         save_config(cfg)
-        print(f"voice set to {args.voice}")
+        print("set " + ", ".join(changed))
         return 0
 
     if args.config:
+        shown = dict(cfg)
+        if shown.get("fish_api_key"):
+            shown["fish_api_key"] = "***set***"
         print(f"config: {CONFIG_PATH}")
-        print(json.dumps(cfg, indent=2))
+        print(json.dumps(shown, indent=2))
         print(f"edge-tts installed: {have_edge_tts()}")
+        print(f"backend in use: {pick_backend(cfg)}")
         return 0
 
     if args.voices:
